@@ -1,0 +1,6 @@
+.DS_Store
+Thumbs.db
+*.log
+.sites-runtime/
+node_modules/
+dist/screenshot.jpeg
