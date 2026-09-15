@@ -89,13 +89,26 @@
     @media(max-width:900px){.legacy-carousel{min-height:560px}}
     @media(max-width:580px){.legacy-carousel{min-height:490px}.carousel-controls{gap:8px}.carousel-count{display:none}}
     @media(prefers-reduced-motion:reduce){.legacy-slide,.legacy-slide img{transition:none}.legacy-slide img{transform:none}}
-  </style>
+
+/* Shared navigation: solid contrast on video, images, and content. */
+.topbar{position:fixed!important;inset:0 0 auto 0!important;z-index:200;min-height:92px;display:flex;align-items:center;justify-content:space-between;gap:28px;padding:12px clamp(22px,4vw,64px)!important;background:#100e0c;border-bottom:1px solid #c69b6855;box-shadow:0 8px 28px #0003}
+.topbar .brand{display:block;flex:0 0 100px}
+.topbar .brand img{display:block;width:100px;height:66px;object-fit:contain;opacity:1;translate:none;scale:1}
+.topbar .menu{position:static;display:flex;flex-wrap:nowrap;align-items:center;justify-content:flex-end;gap:clamp(14px,1.7vw,28px);padding:0;margin:0;border:0;background:none}
+.topbar .menu a{display:block;padding:12px 0;color:#f4efe7;font:500 11px/1.4 'Manrope',Arial,sans-serif;text-transform:uppercase;letter-spacing:.09em;white-space:nowrap;border-bottom:1px solid transparent}
+.topbar .menu a:hover,.topbar .menu a[aria-current="page"]{color:#e0bc87;border-color:#e0bc87}
+.topbar .site-menu-toggle{display:none}
+html{scroll-padding-top:110px}
+@media(max-width:1100px){.topbar{min-height:82px;padding:8px 22px!important}.topbar .brand img{height:64px;width:94px}.topbar .site-menu-toggle{display:flex;align-items:center;gap:14px;border:1px solid #c69b68;padding:12px 16px;color:#f4efe7;background:#211b15;font:500 12px/1.2 'Manrope',Arial,sans-serif;letter-spacing:.09em;cursor:pointer}.topbar .menu{display:none;position:absolute;top:100%;left:0;right:0;max-height:calc(100dvh - 82px);overflow-y:auto;padding:14px 22px 24px;background:#100e0c;border-bottom:1px solid #c69b6855;flex-direction:column;align-items:stretch;gap:0}.topbar .menu.is-open{display:flex}.topbar .menu a{padding:15px 6px;border-bottom:1px solid #ffffff18;font-size:12px}.topbar .menu a[aria-current="page"]{color:#e0bc87}html{scroll-padding-top:100px}}
+  
+.hero{padding-top:92px}.hero-copy{padding-top:clamp(105px,13vh,165px)}@media(max-width:1100px){.hero{padding-top:82px}}@media(max-width:900px){.hero-copy{padding-top:165px}.hero-visual{top:82px}}
+</style>
 </head>
 <body>
   <div class="loader" aria-hidden="true"><img src="assets/fun-events-logo.png" alt=""></div>
   <div class="progress" aria-hidden="true"></div>
   <aside class="rail"><span class="rail-mark" aria-hidden="true">FE</span><nav class="rail-nav" aria-label="Section navigation"><a href="#home" aria-label="Home"></a><a href="#story" aria-label="Our story"></a><a href="#services" aria-label="Services"></a><a href="#work" aria-label="Gallery"></a><a href="#legacy" aria-label="Experience"></a></nav><span class="rail-copy" aria-hidden="true">UAE · Since 2011</span></aside>
-  <header class="topbar"><a class="brand" href="#home" aria-label="Fun Event home"><img src="assets/fun-events-logo.png" alt="Fun Event"></a><button class="site-menu-toggle" aria-expanded="false" aria-controls="main-menu">Menu</button><nav class="menu" id="main-menu" aria-label="Main navigation"><a href="#story">Story</a><a href="#services">Services</a><a href="#weddings">Weddings</a><a href="#hospitality">Hospitality</a><a href="#work">Gallery</a><a href="#legacy">Experience</a><em></em></nav></header>
+  <header class="topbar"><a class="brand" href="/" aria-label="Fun Event home"><img src="/assets/fun-events-logo.png" alt="Fun Event" width="100" height="66"></a><button class="site-menu-toggle" type="button" aria-expanded="false" aria-controls="main-menu">Menu <span aria-hidden="true">☰</span></button><nav class="menu" id="main-menu" aria-label="Main navigation"><a href="/" aria-current="page">Home</a><a href="/about/">About</a><a href="/services/">Services</a><a href="/weddings/">Weddings</a><a href="/celebrations/">Celebrations</a><a href="/hospitality/">Hospitality</a><a href="/gallery/">Gallery</a><a href="/experience/">Experience</a></nav></header>
 
   <main>
     <section class="hero" id="home"><div class="hero-copy"><span class="hero-year">Established · UAE · 2011</span><p class="kicker">The art of occasion</p><h1>Celebrations,<span>reimagined.</span></h1><p class="hero-desc">Weddings, private celebrations, hospitality and complete event settings—created with precision across the UAE.</p></div><div class="hero-visual"><video autoplay muted loop playsinline preload="metadata" poster="https://images.pexels.com/videos/30982289/pexels-photo-30982289.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1080" aria-label="Beachfront wedding venue with floral arch and aisle décor"><source src="https://videos.pexels.com/video-files/30982289/13244139_1080_1920_60fps.mp4" type="video/mp4"></video><button class="motion-control" type="button">Pause motion</button><div class="hero-sigil" aria-hidden="true">Made for<br>the moment</div></div></section>
@@ -162,7 +175,7 @@
     </section>
   </main>
 
-  <footer><div class="footer-main"><img src="assets/fun-events-logo.png" alt="Fun Event"><p>Every detail.<br>One <em>beautiful</em> memory.</p></div><nav class="footer-nav" aria-label="Footer navigation"><a href="#story">Our story</a><a href="#weddings">Weddings</a><a href="#celebrations">Celebrations</a><a href="#hospitality">Hospitality</a><a href="#work">Gallery</a><a href="#home">Back to top ↑</a></nav><div class="footer-meta"><span>Fun Event · United Arab Emirates</span><span>Established 2011</span></div></footer>
+  <footer><div class="footer-main"><img src="assets/fun-events-logo.png" alt="Fun Event"><p>Every detail.<br>One <em>beautiful</em> memory.</p></div><nav class="footer-nav" aria-label="Footer navigation"><a href="/">Home</a><a href="/about/">About</a><a href="/services/">Services</a><a href="/weddings/">Weddings</a><a href="/celebrations/">Celebrations</a><a href="/hospitality/">Hospitality</a><a href="/gallery/">Gallery</a><a href="/experience/">Experience</a></nav><div class="footer-meta"><span>Fun Event · United Arab Emirates</span><span>Established 2011</span></div></footer>
   <script>
     const menuButton=document.querySelector('.site-menu-toggle');
     const menu=document.querySelector('#main-menu');
@@ -195,7 +208,7 @@
     document.querySelectorAll('.reveal').forEach(el=>entryObserver.observe(el));
     document.querySelectorAll('img').forEach(img=>{
       img.decoding='async';
-      if(img.closest('.loader,.legacy-carousel'))return;
+      if(img.closest('.loader,.legacy-carousel,.topbar'))return;
       img.classList.add('media-enter');
       const observe=()=>{if(reduced)showEntry(img);else entryObserver.observe(img)};
       if(img.complete)observe();else{img.addEventListener('load',observe,{once:true});img.addEventListener('error',()=>showEntry(img),{once:true})}
