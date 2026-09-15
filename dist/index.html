@@ -56,6 +56,16 @@
     .private-story .editorial-image img{position:absolute;inset:0;width:100%;height:100%}
     @media(max-width:900px) and (min-width:651px){.private-story{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:30px}}
     @media(max-width:650px){.private-story{grid-template-columns:minmax(0,1fr);gap:34px}.private-story .editorial-image{height:auto;aspect-ratio:1.05}.private-story h2{margin-top:18px}.private-story p{max-width:100%}}
+
+    /* The video must fill its frame without exposing a second background image. */
+    .hero-visual{background:#1d1713;isolation:isolate}
+    .hero-visual video{inset:0;width:100%;height:100%;max-width:none;object-fit:cover;transform:none!important;filter:none;will-change:auto;backface-visibility:hidden}
+    .editorial-image{overflow:hidden}
+    .work img,.cinema img{max-width:none}
+    .media-enter{opacity:0;translate:0 18px;scale:1.045;transition:opacity 1.15s ease,translate 1.5s cubic-bezier(.22,1,.36,1),scale 1.8s cubic-bezier(.22,1,.36,1)}
+    .media-enter.media-visible{opacity:1;translate:0 0;scale:1}
+    .motion-paused *{animation-play-state:paused!important}
+    @media(prefers-reduced-motion:reduce){.media-enter{opacity:1;translate:none;scale:1;transition:none}.hero-visual{background-image:none}.hero-visual video{display:block}}
   </style>
 </head>
 <body>
@@ -124,16 +134,69 @@
     menuButton.addEventListener('click',()=>{const open=menu.classList.toggle('is-open');menuButton.setAttribute('aria-expanded',String(open))});
     menu.querySelectorAll('a').forEach(a=>a.addEventListener('click',closeMenu));
     document.addEventListener('keydown',e=>{if(e.key==='Escape'&&menu.classList.contains('is-open')){closeMenu();menuButton.focus()}});
-    const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const motionPreference=matchMedia('(prefers-reduced-motion: reduce)');
+    let reduced=motionPreference.matches,userPaused=false,heroInView=true;
     const heroVideo=document.querySelector('.hero-visual video');
     const motionButton=document.querySelector('.motion-control');
-    let motionPaused=reduced;
-    if(reduced){heroVideo.pause();heroVideo.removeAttribute('autoplay')}
-    motionButton.addEventListener('click',()=>{motionPaused=!motionPaused;if(motionPaused){heroVideo.pause()}else{heroVideo.play().catch(()=>{})}motionButton.textContent=motionPaused?'Resume motion':'Pause motion';document.querySelector('.hero-sigil').style.animationPlayState=motionPaused?'paused':'running'});
-    const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('visible');observer.unobserve(entry.target)}}),{threshold:.12});
-    document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
-    if(!reduced){const layers=[...document.querySelectorAll('.parallax')];let ticking=false;const draw=()=>{if(motionPaused){ticking=false;return}const vh=innerHeight;layers.forEach((el,i)=>{const box=el.parentElement.getBoundingClientRect();if(box.bottom>0&&box.top<vh){const shift=(box.top+box.height/2-vh/2)*(i%2?.07:-.065);el.style.transform=`translate3d(0,${shift}px,0) scale(1.03)`}});document.querySelector('.hero-visual video').style.transform=`translate3d(0,${scrollY*.055}px,0) scale(1.04)`;document.querySelector('.progress').style.transform=`scaleX(${scrollY/(document.documentElement.scrollHeight-innerHeight)})`;ticking=false};addEventListener('scroll',()=>{if(!ticking){requestAnimationFrame(draw);ticking=true}},{passive:true});draw()}else{document.querySelector('.progress').style.transform='scaleX(1)'}
-  </script>
+    const progress=document.querySelector('.progress');
+    heroVideo.muted=true;
+    const syncPlayback=()=>{
+      const paused=reduced||userPaused;
+      document.documentElement.classList.toggle('motion-paused',paused);
+      motionButton.textContent=paused?'Resume motion':'Pause motion';
+      motionButton.setAttribute('aria-pressed',String(paused));
+      if(paused||!heroInView||document.hidden)heroVideo.pause();
+      else heroVideo.play().catch(()=>{motionButton.textContent='Play motion'});
+    };
+    motionButton.addEventListener('click',()=>{userPaused=!userPaused;syncPlayback();schedule()});
+    document.addEventListener('visibilitychange',syncPlayback);
+    const heroObserver=new IntersectionObserver(entries=>{heroInView=entries[0].isIntersecting;syncPlayback()},{threshold:0});
+    heroObserver.observe(document.querySelector('.hero'));
+    const showEntry=el=>{el.classList.add('visible','media-visible')};
+    const entryObserver=new IntersectionObserver(entries=>entries.forEach(entry=>{
+      if(entry.isIntersecting){showEntry(entry.target);entryObserver.unobserve(entry.target)}
+    }),{threshold:.08});
+    document.querySelectorAll('.reveal').forEach(el=>entryObserver.observe(el));
+    document.querySelectorAll('img').forEach(img=>{
+      img.decoding='async';
+      if(img.closest('.loader'))return;
+      img.classList.add('media-enter');
+      const observe=()=>{if(reduced)showEntry(img);else entryObserver.observe(img)};
+      if(img.complete)observe();else{img.addEventListener('load',observe,{once:true});img.addEventListener('error',()=>showEntry(img),{once:true})}
+    });
+    const layers=[...document.querySelectorAll('.parallax')].map(el=>({el,current:0}));
+    let frame=0,previous=0;
+    function draw(now){
+      frame=0;
+      const dt=previous?Math.min(now-previous,50):16.7;
+      previous=now;
+      const ease=1-Math.exp(-dt/115);
+      const vh=innerHeight;
+      const height=document.documentElement.scrollHeight-vh;
+      progress.style.transform='scaleX('+(height>0?Math.min(1,Math.max(0,scrollY/height)):0)+')';
+      let moving=false;
+      if(!reduced&&!userPaused&&!document.hidden){
+        layers.forEach((layer,i)=>{
+          const box=layer.el.parentElement.getBoundingClientRect();
+          if(box.bottom<0||box.top>vh)return;
+          const target=Math.max(-28,Math.min(28,(box.top+box.height/2-vh/2)*(i%2?.035:-.035)));
+          layer.current+=(target-layer.current)*ease;
+          if(Math.abs(target-layer.current)>.1)moving=true;
+          layer.el.style.transform='translate3d(0,'+layer.current.toFixed(2)+'px,0)';
+        });
+      }
+      if(moving)frame=requestAnimationFrame(draw);else previous=0;
+    }
+    function schedule(){if(!frame)frame=requestAnimationFrame(draw)}
+    addEventListener('scroll',schedule,{passive:true});
+    addEventListener('resize',schedule,{passive:true});
+    motionPreference.addEventListener('change',event=>{
+      reduced=event.matches;
+      if(reduced){document.querySelectorAll('.reveal,.media-enter').forEach(showEntry);layers.forEach(({el})=>el.style.transform='none')}
+      syncPlayback();schedule();
+    });
+    syncPlayback();schedule();
+</script>
 </body>
 </html>
 
