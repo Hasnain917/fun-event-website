@@ -138,3 +138,21 @@ body .page-main .contact-questions details[open]{background:#f3eee6;padding-inli
 
 /* Improve gold-logo contrast on the light inner-page header and footer. */
 .topbar .brand img,.page-footer-top img{filter:brightness(.68) saturate(.9)}
+
+/* The same hero composition on all inner pages. */
+body .page-main>.inner-page-hero:first-child{padding-top:60px!important;padding-bottom:60px!important;background:#15120f}
+.inner-hero-layout{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-items:center;gap:64px;width:100%;max-width:1280px;margin-inline:auto}
+.inner-hero-copy{min-width:0;container-type:inline-size}
+.inner-hero-breadcrumb{display:flex;align-items:center;gap:12px;margin:0 0 28px;font-size:10px;letter-spacing:.12em;color:#bdb0a0}
+.inner-hero-breadcrumb a{color:#f4efe7}.inner-hero-breadcrumb a:hover{color:#e0bc87}
+body .inner-page-hero .eyebrow{margin:0 0 20px;font-size:10px;letter-spacing:.16em}
+body .page-main .inner-page-hero h1{font:400 clamp(44px,11.5cqi,72px)/1.06 var(--serif);letter-spacing:-.035em;margin:0 0 25px}
+.inner-page-hero h1>span,.inner-page-hero h1>em{display:block}
+body .page-main .inner-page-hero .inner-hero-description{font:400 15px/1.85 var(--sans);max-width:48ch;min-height:5.55em;margin:0;color:#c2b7a9}
+body .page-main .inner-hero-media{position:relative;margin:0;width:100%;height:420px;border:1px solid #c69b6840;border-radius:0;overflow:hidden;background:#211b15}
+body .page-main .inner-hero-media img{display:block;width:100%;height:100%;max-width:none;object-fit:cover;border-radius:0;transition:transform 1.2s cubic-bezier(.22,1,.36,1)}
+body .page-main .inner-hero-media figcaption{position:absolute;bottom:18px;left:18px;margin:0;padding:7px 10px;background:#15120fcc;color:#e8d7bf!important;font:400 9px/1.4 var(--sans);letter-spacing:.12em;text-transform:uppercase}
+@media(max-width:1100px){.inner-hero-layout{gap:36px}body .page-main .inner-hero-media{height:390px}}
+@media(max-width:800px){.inner-hero-layout{grid-template-columns:minmax(0,1fr);gap:32px}.inner-hero-breadcrumb{margin-bottom:25px}body .page-main .inner-page-hero h1{font-size:52px}body .page-main .inner-page-hero .inner-hero-description{max-width:60ch;min-height:3.7em}body .page-main .inner-hero-media{height:340px}}
+@media(max-width:520px){body .page-main .inner-page-hero h1{font-size:clamp(38px,11vw,48px)}body .page-main .inner-page-hero .inner-hero-description{font-size:14px;min-height:7.4em}body .page-main .inner-hero-media{height:280px}.inner-hero-layout{gap:30px}}
+@media(prefers-reduced-motion:reduce){body .page-main .inner-hero-media img{transition:none}}
