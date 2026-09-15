@@ -66,6 +66,29 @@
     .media-enter.media-visible{opacity:1;translate:0 0;scale:1}
     .motion-paused *{animation-play-state:paused!important}
     @media(prefers-reduced-motion:reduce){.media-enter{opacity:1;translate:none;scale:1;transition:none}.hero-visual{background-image:none}.hero-visual video{display:block}}
+
+    .legacy-carousel{position:relative;min-width:0;min-height:650px;overflow:hidden;background:#211b15;isolation:isolate;touch-action:pan-y}
+    .legacy-slides,.legacy-slide{position:absolute;inset:0}
+    .legacy-slide{margin:0;opacity:0;z-index:0;transition:opacity 1.35s cubic-bezier(.22,1,.36,1);pointer-events:none}
+    .legacy-slide.is-active{opacity:1;z-index:1}
+    .legacy-slide img{width:100%;height:100%;max-width:none;object-fit:cover;object-position:center;transform:scale(1.04);transition:transform 6.5s linear}
+    .legacy-slide.is-active img{transform:scale(1)}
+    .legacy-slide:after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.15),transparent 45%,rgba(0,0,0,.72))}
+    .legacy-slide figcaption{position:absolute;z-index:2;left:clamp(24px,4vw,65px);bottom:112px;right:25px;font:400 clamp(2.3rem,3.8vw,4.3rem)/1.05 var(--serif);color:var(--cream)}
+    .carousel-note{position:absolute;z-index:3;left:clamp(24px,4vw,65px);top:32px;font-size:.58rem;letter-spacing:.18em;text-transform:uppercase;color:var(--cream);background:#151210b3;padding:9px 12px}
+    .carousel-controls{position:absolute;z-index:3;bottom:30px;left:clamp(24px,4vw,65px);right:clamp(24px,4vw,65px);display:flex;align-items:center;gap:14px;border-top:1px solid #ffffff50;padding-top:20px}
+    .carousel-controls button{width:40px;height:40px;flex-shrink:0;border:1px solid #ffffff60;background:#15121055;color:var(--cream);cursor:pointer;font-size:1rem;transition:background .2s}
+    .carousel-controls button:hover{background:#806344}
+    .carousel-dots{display:flex;gap:0;margin-right:auto}
+    .carousel-dots button{width:28px;height:40px;border:0;background:transparent;position:relative}
+    .carousel-dots button:after{content:'';position:absolute;width:5px;height:5px;border:1px solid var(--gold);border-radius:50%;left:11px;top:17px}
+    .carousel-dots button[aria-current="true"]:after{background:var(--gold)}
+    .carousel-count{font-size:.64rem;letter-spacing:.12em;color:var(--cream);white-space:nowrap}
+    .carousel-status{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}
+    @media(min-width:901px){.legacy-carousel{margin-left:84px}}
+    @media(max-width:900px){.legacy-carousel{min-height:560px}}
+    @media(max-width:580px){.legacy-carousel{min-height:490px}.carousel-controls{gap:8px}.carousel-count{display:none}}
+    @media(prefers-reduced-motion:reduce){.legacy-slide,.legacy-slide img{transition:none}.legacy-slide img{transform:none}}
   </style>
 </head>
 <body>
@@ -112,7 +135,21 @@
       <figure class="work reveal"><img class="parallax" src="assets/emirati-hospitality.webp" alt="Refined Emirati hospitality majlis"><figcaption><b>Hospitality</b><span>03</span></figcaption></figure>
     </div><p class="concept-note">Concept imagery shown for design presentation; final gallery photography will be supplied by Fun Event.</p></section>
 
-    <section class="legacy" id="legacy"><div class="legacy-figure"><img class="parallax" src="assets/fun-events-logo.png" alt="Fun Event"></div><div class="legacy-copy reveal"><div class="section-label">Our experience</div><h2>A legacy of<br><em>gathering.</em></h2><p>Over the years, Fun Event has delivered weddings, private celebrations, community events and event setups across the UAE, including wedding stages, tent installations, venue styling, hospitality settings, furniture arrangements and different event themes.</p><div class="legacy-list"><span>Weddings</span><span>Private Celebrations</span><span>Community Events</span><span>Hospitality</span></div></div></section>
+    <section class="legacy" id="legacy"><div class="legacy-carousel reveal" role="region" aria-roledescription="carousel" aria-label="Event inspiration" tabindex="0">
+      <div class="legacy-slides">
+        <figure class="legacy-slide is-active" role="group" aria-roledescription="slide" aria-label="1 of 3" aria-hidden="false"><img src="assets/hero-wedding.webp" alt="Candlelit wedding reception beneath an elegant tent" loading="lazy"><figcaption>Wedding settings</figcaption></figure>
+        <figure class="legacy-slide" role="group" aria-roledescription="slide" aria-label="2 of 3" aria-hidden="true"><img src="assets/stage-detail.webp" alt="Ivory wedding stage with sculptural seating and floral décor" loading="lazy"><figcaption>Stage &amp; décor</figcaption></figure>
+        <figure class="legacy-slide" role="group" aria-roledescription="slide" aria-label="3 of 3" aria-hidden="true"><img src="assets/emirati-hospitality.webp" alt="Warm Emirati majlis hospitality setting" loading="lazy"><figcaption>Emirati hospitality</figcaption></figure>
+      </div>
+      <span class="carousel-note">Concept imagery</span>
+      <div class="carousel-controls">
+        <button type="button" class="carousel-prev" aria-label="Previous image">←</button>
+        <div class="carousel-dots" role="group" aria-label="Choose image"><button type="button" aria-label="Show wedding settings" aria-current="true"></button><button type="button" aria-label="Show stage and décor" aria-current="false"></button><button type="button" aria-label="Show hospitality" aria-current="false"></button></div>
+        <span class="carousel-count" aria-hidden="true">01 / 03</span>
+        <button type="button" class="carousel-pause" aria-label="Pause carousel" aria-pressed="false">Ⅱ</button>
+        <button type="button" class="carousel-next" aria-label="Next image">→</button>
+      </div><span class="carousel-status" role="status" aria-live="polite"></span>
+    </div><div class="legacy-copy reveal"><div class="section-label">Our experience</div><h2>A legacy of<br><em>gathering.</em></h2><p>Over the years, Fun Event has delivered weddings, private celebrations, community events and event setups across the UAE, including wedding stages, tent installations, venue styling, hospitality settings, furniture arrangements and different event themes.</p><div class="legacy-list"><span>Weddings</span><span>Private Celebrations</span><span>Community Events</span><span>Hospitality</span></div></div></section>
 
     <section class="details-section" id="details" aria-labelledby="details-title">
       <div class="details-head reveal"><div><div class="section-label">The complete setting</div><h2 id="details-title">Beauty in<br><em>every element.</em></h2></div><p>Explore the elements that bring your event together, from its structure and atmosphere to professional on-site supervision.</p></div>
@@ -158,7 +195,7 @@
     document.querySelectorAll('.reveal').forEach(el=>entryObserver.observe(el));
     document.querySelectorAll('img').forEach(img=>{
       img.decoding='async';
-      if(img.closest('.loader'))return;
+      if(img.closest('.loader,.legacy-carousel'))return;
       img.classList.add('media-enter');
       const observe=()=>{if(reduced)showEntry(img);else entryObserver.observe(img)};
       if(img.complete)observe();else{img.addEventListener('load',observe,{once:true});img.addEventListener('error',()=>showEntry(img),{once:true})}
@@ -195,6 +232,42 @@
       syncPlayback();schedule();
     });
     syncPlayback();schedule();
+
+    // Autoplay only while the carousel is visible and not being interacted with.
+    const carousel=document.querySelector('.legacy-carousel');
+    const slides=[...carousel.querySelectorAll('.legacy-slide')];
+    const dots=[...carousel.querySelectorAll('.carousel-dots button')];
+    const pauseCarousel=carousel.querySelector('.carousel-pause');
+    let slideIndex=0,carouselTimer=null,carouselVisible=false,carouselPaused=motionPreference.matches,carouselHover=false;
+    const stopCarousel=()=>{clearTimeout(carouselTimer);carouselTimer=null};
+    const scheduleCarousel=()=>{
+      stopCarousel();
+      if(carouselVisible&&!carouselPaused&&!reduced&&!userPaused&&!document.hidden&&!carouselHover&&!carousel.contains(document.activeElement)){
+        carouselTimer=setTimeout(()=>{showSlide(slideIndex+1,false)},6000);
+      }
+    };
+    const showSlide=(next,announce=true)=>{
+      slideIndex=(next+slides.length)%slides.length;
+      slides.forEach((slide,i)=>{slide.classList.toggle('is-active',i===slideIndex);slide.setAttribute('aria-hidden',String(i!==slideIndex));dots[i].setAttribute('aria-current',String(i===slideIndex))});
+      carousel.querySelector('.carousel-count').textContent=String(slideIndex+1).padStart(2,'0')+' / 03';
+      if(announce)carousel.querySelector('.carousel-status').textContent=slides[slideIndex].querySelector('figcaption').textContent+', '+(slideIndex+1)+' of 3';
+      scheduleCarousel();
+    };
+    carousel.querySelector('.carousel-prev').addEventListener('click',()=>showSlide(slideIndex-1));
+    carousel.querySelector('.carousel-next').addEventListener('click',()=>showSlide(slideIndex+1));
+    dots.forEach((dot,i)=>dot.addEventListener('click',()=>showSlide(i)));
+    const syncCarouselButton=()=>{pauseCarousel.textContent=carouselPaused?'▶':'Ⅱ';pauseCarousel.setAttribute('aria-label',carouselPaused?'Resume carousel':'Pause carousel');pauseCarousel.setAttribute('aria-pressed',String(carouselPaused))};
+    pauseCarousel.addEventListener('click',()=>{carouselPaused=!carouselPaused;syncCarouselButton();scheduleCarousel()});
+    carousel.addEventListener('keydown',e=>{if(e.key==='ArrowLeft'||e.key==='ArrowRight'){e.preventDefault();showSlide(slideIndex+(e.key==='ArrowRight'?1:-1))}});
+    carousel.addEventListener('pointerenter',e=>{if(e.pointerType==='mouse'){carouselHover=true;stopCarousel()}});
+    carousel.addEventListener('pointerleave',()=>{carouselHover=false;scheduleCarousel()});
+    carousel.addEventListener('focusin',stopCarousel);
+    carousel.addEventListener('focusout',()=>setTimeout(scheduleCarousel,0));
+    document.addEventListener('visibilitychange',scheduleCarousel);
+    motionButton.addEventListener('click',scheduleCarousel);
+    motionPreference.addEventListener('change',()=>{carouselPaused=motionPreference.matches;syncCarouselButton();scheduleCarousel()});
+    new IntersectionObserver(entries=>{carouselVisible=entries[0].isIntersecting;scheduleCarousel()},{threshold:.15}).observe(carousel);
+    syncCarouselButton();
 </script>
 </body>
 </html>
