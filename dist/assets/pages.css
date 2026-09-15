@@ -135,3 +135,6 @@ body .page-main .contact-questions details[open]{background:#f3eee6;padding-inli
 @media(max-width:1100px){body .page-main>section:first-child{padding-inline:32px}}
 @media(max-width:650px){body .page-main>section:first-child{padding-inline:20px}body .page-main .experience-panorama img{height:270px}}
 @media(prefers-reduced-motion:reduce){body .page-main figure img,body .page-main .text-link,body .page-main .service-story{transition:none}body .page-main figure:hover img{transform:none}}
+
+/* Improve gold-logo contrast on the light inner-page header and footer. */
+.topbar .brand img,.page-footer-top img{filter:brightness(.68) saturate(.9)}
