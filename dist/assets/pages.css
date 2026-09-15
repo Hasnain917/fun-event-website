@@ -36,3 +36,60 @@ html{scroll-padding-top:110px}
 @media(max-width:900px){.page-main .container{padding-block:60px}.about-story,.hospitality-opening{gap:40px}.service-story{grid-template-columns:35px 1fr .8fr;gap:20px}.wedding-diptych{gap:35px}.celebration-collage{grid-template-columns:1fr 1fr;gap:24px}.celebration-collage>p{grid-column:1/-1;grid-row:2}.celebration-collage figure:last-child{margin-top:60px}.celebration-notes,.hospitality-details{gap:40px}.gallery-opening,.experience-caption{gap:30px}.art-gallery-grid .gallery-card:nth-child(2){margin-top:60px}}
 @media(max-width:650px){.about-opening h1{font-size:48px}.about-story,.wedding-diptych,.hospitality-opening,.celebration-notes,.hospitality-details,.gallery-opening,.experience-caption{grid-template-columns:1fr;gap:36px}.about-story figure img{aspect-ratio:1.1}.giant-number{font-size:100px}.belief-notes{grid-template-columns:1fr;gap:12px;margin-top:35px}.services-opening>div{display:block}.services-opening h1{font-size:60px}.services-opening>div p{max-width:none;margin-top:30px}.service-story{grid-template-columns:30px 1fr;gap:15px}.service-story figure{grid-column:2}.service-story h2{font-size:35px}.wedding-cover{min-height:680px;padding-inline:24px}.wedding-cover h1{font-size:80px}.wedding-diptych>div{padding-top:0}.wedding-diptych>figure img{aspect-ratio:1}.celebration-opening h1{font-size:58px}.celebration-collage{gap:15px;padding-inline:8px}.celebration-collage figure{padding:7px}.celebration-collage figcaption{font-size:8px}.hospitality-opening figure{max-width:450px}.hospitality-band{gap:16px;font-size:19px}.hospitality-band i{display:none}.gallery-opening h1{font-size:64px}.art-gallery-grid{grid-template-columns:1fr;gap:35px}.art-gallery-grid .gallery-card:nth-child(2){margin:0}.art-gallery-grid .gallery-card:nth-child(3){width:100%}.art-gallery-grid .gallery-card img{aspect-ratio:1!important}.gallery-end{display:block}.gallery-end .text-link{margin-top:30px}.experience-year{font-size:clamp(120px,31vw,210px)}.experience-caption h1{font-size:52px}.experience-panorama{height:300px}.experience-repertoire article{grid-template-columns:30px 1fr;gap:12px}.experience-repertoire p{grid-column:2}.experience-repertoire h3{font-size:29px}}
 @media(prefers-reduced-motion:reduce){.service-story img{transition:none}}
+
+/* Light, minimal presentation for inner pages only. */
+:root{--night:#faf8f4;--cream:#fffdf9;--gold:#96714b;--muted:#6b645c;--line:#ded7cc}
+body{background:#faf8f4;color:#29251f}
+.topbar{background:#fffdf9;border-bottom:1px solid #e5dfd5;box-shadow:none}
+.topbar .menu a{color:#39332c}
+.topbar .menu a:hover,.topbar .menu a[aria-current="page"]{color:#896440;border-color:#b3926c}
+.topbar .site-menu-toggle{color:#39332c;background:transparent;border-color:#c8b59b}
+.topbar .menu{background:transparent}
+.page-main{background:#faf8f4;color:#29251f}
+.page-main .container{padding-block:65px}
+.page-main h1{font-size:clamp(44px,5.8vw,78px);line-height:1.08;letter-spacing:-.035em}
+.page-main h2{font-size:clamp(32px,4vw,52px);line-height:1.12}
+.page-main h3{font-size:28px;line-height:1.2}
+.page-main p{font-weight:400}
+.eyebrow{font-size:10px;letter-spacing:.15em;color:#896440}
+.text-link{border-color:#baa182;letter-spacing:.08em;color:#6d5135}
+.about-belief{background:#f1ede5}.about-belief .container{padding-block:70px}
+.giant-number{font-size:clamp(75px,10vw,135px);color:#ad9272;margin-bottom:24px}
+.about-story{gap:65px}.about-byline{color:#796b5c}
+.services-opening>div p,.service-story p,.about-letter p,.wedding-vow>p:last-child,.wedding-diptych p,.experience-caption p,.experience-repertoire p{color:#6b645c}
+.service-story{padding:32px 0}.service-story h2{font-size:clamp(28px,3vw,42px)}
+.service-story img{transition:none}.service-story:hover img{transform:none}
+.wedding-cover{min-height:0;display:grid;grid-template-columns:1fr 1fr;gap:55px;align-items:center;max-width:1280px;width:calc(100% - 96px);margin-inline:auto;padding:65px 0;background:transparent}
+.wedding-cover>img{position:static;grid-column:2;grid-row:1;width:100%;height:auto;aspect-ratio:.95;object-fit:cover;z-index:auto}
+.wedding-cover>div{grid-column:1;grid-row:1}.wedding-cover:after{display:none}
+.wedding-cover h1{font-size:clamp(48px,6vw,82px);line-height:1.05}
+.cover-credit{position:static;grid-column:2;justify-self:start;color:#7a7064;margin-top:-38px;font-size:9px}
+.wedding-vow{padding-block:65px!important;border-top:1px solid var(--line)}
+.wedding-diptych>div{padding-top:30px}.wedding-diptych>div figure{margin-top:35px}
+.art-celebrations{background:#faf8f4}.celebration-opening h1{font-size:clamp(48px,6vw,82px);margin-bottom:42px}
+.celebration-collage figure:first-child,.celebration-collage figure:last-child{transform:none}
+.celebration-collage figure{padding:0;background:transparent;box-shadow:none}
+.celebration-collage>p{font-size:25px;color:#6b645c}
+.celebration-notes{gap:65px}
+.art-hospitality{background:#faf8f4}
+.hospitality-opening{gap:65px}
+.hospitality-opening>div p:not(.eyebrow),.hospitality-details p{color:#6b645c}
+.hospitality-opening figure{border:0;padding:0}
+.hospitality-opening figcaption{color:#796b5c;padding-top:14px}
+.hospitality-band{background:#f1ede5;border-color:#e1d8ca;color:#796344;gap:25px;font-size:20px}
+.hospitality-details article{padding-bottom:22px;margin-bottom:22px}
+.art-gallery{background:#faf8f4}.gallery-opening h1{font-size:clamp(48px,6vw,82px)}
+.gallery-filters button{border-color:#ded7cc;color:#6b645c;padding:9px 17px;background:transparent}
+.gallery-filters button[aria-pressed="true"]{background:#eee7dc;color:#493b2c;border-color:#c9b699}
+.art-gallery-grid figcaption{font-size:25px}.gallery-end p{font-size:clamp(30px,3.5vw,45px)}
+.experience-year{font-size:clamp(120px,22vw,290px);color:#b19a7c;letter-spacing:-.055em}
+.experience-year>span{font-size:26px;color:#796b5c}
+.experience-caption{margin-top:32px}
+.experience-panorama{height:350px}.experience-panorama span{background:#fffdf9eb;color:#6b645c}
+.page-footer{background:#f1ede5;color:#39332c;border-top:1px solid #e2dace;padding-top:50px}
+.page-footer-top{padding-bottom:32px}.page-footer-top p{font-size:clamp(30px,3.8vw,52px)}
+.page-footer nav a:hover{color:#896440}.page-footer-bottom{color:#796b5c}
+.entry-pending{transform:translateY(12px);transition:opacity .7s ease,transform .8s ease}
+@media(max-width:1100px){.topbar .menu{background:#fffdf9;border-color:#e5dfd5}.topbar .menu a{border-bottom-color:#e5dfd5}.topbar .menu a[aria-current="page"]{color:#896440}.wedding-cover{width:calc(100% - 64px);gap:35px}}
+@media(max-width:650px){.page-main .container{padding-block:45px}.page-main h1{font-size:46px}.page-main h2{font-size:35px}.about-story,.hospitality-opening,.celebration-notes{gap:32px}.wedding-cover{display:flex;flex-direction:column;width:calc(100% - 40px);padding:45px 0;gap:25px;align-items:stretch}.wedding-cover>div{order:0}.wedding-cover>img{order:1;aspect-ratio:1.2}.cover-credit{order:2;margin:0}.wedding-cover h1{font-size:56px}.wedding-vow{padding-block:45px!important}.wedding-diptych>div{padding-top:0}.hospitality-band{font-size:17px;gap:14px;padding:22px}.experience-year{font-size:clamp(110px,28vw,180px)}.experience-panorama{height:270px}.page-footer-top p{font-size:36px}}
+@media(prefers-reduced-motion:reduce){.entry-pending{opacity:1;transform:none;transition:none}}
