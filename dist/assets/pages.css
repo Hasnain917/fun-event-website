@@ -93,3 +93,45 @@ body{background:#faf8f4;color:#29251f}
 @media(max-width:1100px){.topbar .menu{background:#fffdf9;border-color:#e5dfd5}.topbar .menu a{border-bottom-color:#e5dfd5}.topbar .menu a[aria-current="page"]{color:#896440}.wedding-cover{width:calc(100% - 64px);gap:35px}}
 @media(max-width:650px){.page-main .container{padding-block:45px}.page-main h1{font-size:46px}.page-main h2{font-size:35px}.about-story,.hospitality-opening,.celebration-notes{gap:32px}.wedding-cover{display:flex;flex-direction:column;width:calc(100% - 40px);padding:45px 0;gap:25px;align-items:stretch}.wedding-cover>div{order:0}.wedding-cover>img{order:1;aspect-ratio:1.2}.cover-credit{order:2;margin:0}.wedding-cover h1{font-size:56px}.wedding-vow{padding-block:45px!important}.wedding-diptych>div{padding-top:0}.hospitality-band{font-size:17px;gap:14px;padding:22px}.experience-year{font-size:clamp(110px,28vw,180px)}.experience-panorama{height:270px}.page-footer-top p{font-size:36px}}
 @media(prefers-reduced-motion:reduce){.entry-pending{opacity:1;transform:none;transition:none}}
+
+/* Contact page */
+.contact-opening{border-bottom:1px solid var(--line)}.contact-opening h1{max-width:1000px}.contact-opening>p:last-child{color:var(--muted);max-width:60ch}
+.contact-layout{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:70px;align-items:start}.contact-story figure img{width:100%;aspect-ratio:1.2;object-fit:cover}.contact-story figcaption{font-size:9px;color:var(--muted);padding-top:12px}.contact-facts{display:grid;grid-template-columns:1fr 1fr;gap:20px;padding-block:25px;margin-bottom:25px;border-bottom:1px solid var(--line)}.contact-facts p{font-size:14px;margin:0}.contact-facts span{display:block;font-size:10px;text-transform:uppercase;letter-spacing:.1em;color:var(--gold);margin-bottom:8px}.contact-story>p{color:var(--muted)}.contact-form-panel{background:#fffdf9;padding:40px;border:1px solid var(--line);min-width:0}.contact-form-panel h2{font-size:42px}.contact-notice{font-size:12px;line-height:1.7;color:var(--muted);padding-bottom:22px;border-bottom:1px solid var(--line)}.contact-fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px;margin-top:25px}.contact-fields label{display:block;font-size:12px;min-width:0}.optional{font-size:10px;color:var(--muted)}.contact-fields input,.contact-fields select,.contact-fields textarea{display:block;width:100%;min-width:0;margin-top:8px;border:1px solid #d8cfc2;border-radius:0;background:#faf8f4;color:#29251f;padding:12px;font:400 16px/1.5 var(--sans)}.contact-fields input:focus,.contact-fields select:focus,.contact-fields textarea:focus{outline:2px solid #96714b;outline-offset:2px}.contact-fields textarea{resize:vertical;min-height:140px}.full-field{grid-column:1/-1}.form-help{font-size:11px;color:var(--muted);margin:20px 0}.contact-submit{border:1px solid #806041;background:#806041;color:#fffdf9;padding:14px 22px;cursor:pointer;font:500 12px var(--sans);display:inline-flex;align-items:center;gap:30px;min-height:46px}.contact-submit:hover{background:#654a30}#enquiry-result{margin-top:30px;border-top:1px solid var(--line);padding-top:24px}#enquiry-summary{white-space:pre-wrap;overflow-wrap:anywhere;font:400 13px/1.8 var(--sans);padding:18px;background:#f1ede5}#copy-status{font-size:12px}.contact-questions{border-top:1px solid var(--line)}.contact-questions details{padding:20px 0;border-bottom:1px solid var(--line)}.contact-questions summary{cursor:pointer;font-size:16px}.contact-questions details p{font-size:14px;color:var(--muted)}.contact-questions a{text-decoration:underline}
+@media(max-width:1100px){.contact-layout{gap:35px}.contact-form-panel{padding:28px}}
+@media(max-width:800px){.contact-layout{grid-template-columns:1fr}.contact-story figure img{aspect-ratio:1.8}.contact-story h2{margin-top:20px}}
+@media(max-width:520px){.contact-fields{grid-template-columns:1fr}.contact-form-panel{padding:22px}.contact-form-panel h2{font-size:34px}.contact-story figure img{aspect-ratio:1.3}.contact-facts{gap:15px}}
+
+/* One section spacing rule at every viewport size. */
+:root{--section-space:60px}
+body .page-main>section{padding-top:var(--section-space)!important;padding-bottom:var(--section-space)!important}
+body .page-main>section> .container{padding-top:0!important;padding-bottom:0!important}
+body .page-main .contact-form-panel section{padding-top:30px;padding-bottom:0}
+/* Dark opening section with light, minimal content below. */
+body .page-main>section:first-child{width:100%;max-width:none;margin-inline:0;padding-inline:max(48px,calc((100% - 1280px)/2));background:#15120f;color:#f4efe7;--gold:#e0bc87;--muted:#c2b7a9;--line:#c69b684a;position:relative;isolation:isolate}
+body .page-main>section:first-child h1,body .page-main>section:first-child h2{color:#f4efe7}
+body .page-main>section:first-child h1 em,body .page-main>section:first-child h2 em,body .page-main>section:first-child .eyebrow{color:#e0bc87}
+body .page-main>section:first-child p:not(.eyebrow),body .page-main>section:first-child figcaption,body .page-main>section:first-child .about-byline{color:#c2b7a9}
+body .page-main>section:first-child .text-link{color:#e0bc87;border-color:#96714b}
+body .page-main>section:first-child .experience-year{color:#d0ac7b}
+body .page-main>section:first-child .experience-year>span{color:#c2b7a9}
+body .page-main>section:first-child .celebration-collage figure{background:#221c16;padding:10px}
+body .page-main>section:first-child .celebration-collage em{color:#e0bc87}
+body .page-main>section:first-child .cover-credit{color:#c2b7a9}
+body .page-main>section:first-child.wedding-cover>div{min-width:0}
+body .page-main>section:first-child:before{content:'';position:absolute;left:0;right:0;top:0;height:1px;background:linear-gradient(90deg,transparent,#c69b68,transparent);pointer-events:none}
+body .page-main .experience-panorama{height:auto}
+body .page-main .experience-panorama img{height:350px}
+body .page-main .experience-panorama span{bottom:80px}
+body .page-main .text-link{transition:color .25s,gap .35s}
+body .page-main .text-link:hover{gap:42px}
+body .page-main figure{overflow:hidden}
+body .page-main figure img{transition:transform 1.2s cubic-bezier(.22,1,.36,1)}
+body .page-main .service-story:hover img,body .page-main figure:hover img{transform:scale(1.025)}
+body .page-main .service-story{transition:background .35s}
+body .page-main .service-story:hover{background:#f3eee6}
+body .page-main .contact-questions summary{padding-right:30px;transition:color .25s}
+body .page-main .contact-questions summary:hover{color:#896440}
+body .page-main .contact-questions details[open]{background:#f3eee6;padding-inline:16px}
+@media(max-width:1100px){body .page-main>section:first-child{padding-inline:32px}}
+@media(max-width:650px){body .page-main>section:first-child{padding-inline:20px}body .page-main .experience-panorama img{height:270px}}
+@media(prefers-reduced-motion:reduce){body .page-main figure img,body .page-main .text-link,body .page-main .service-story{transition:none}body .page-main figure:hover img{transform:none}}
