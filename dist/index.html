@@ -43,6 +43,19 @@
     @media(max-width:900px){.hero-copy{pointer-events:none}.editorial{gap:40px}.site-menu-toggle{display:block;border:1px solid var(--bronze);background:#151210;color:var(--gold);padding:12px 15px;font:400 .68rem var(--sans);letter-spacing:.12em;text-transform:uppercase}.menu{display:none;position:absolute;top:92px;left:20px;right:20px;padding:24px;background:#151210;border:1px solid var(--line);flex-direction:column;align-items:stretch;gap:0}.menu.is-open{display:flex}.menu a{display:block;padding:13px 4px;font-size:.75rem}.menu em{display:none}.hero-visual{z-index:1}.hero-copy{pointer-events:none}.hero-sigil{bottom:16%}.motion-control{right:20px;bottom:20px}.occasion-ribbon{justify-content:center}.occasion-ribbon span:not(:last-child):after{display:none}.occasion-ribbon{gap:16px 28px}.editorial h2,.details-section h2{font-size:clamp(3.2rem,6vw,5.2rem)}.wedding-story .editorial-image{height:510px}.story-index{right:-16px;font-size:4rem}.details-head{gap:35px}.details-grid{gap:0 35px}}
     @media(max-width:650px){.editorial,.details-section{padding:75px 22px}.wedding-story,.private-story,.hospitality-story{grid-template-columns:1fr;gap:42px}.wedding-story .editorial-image{height:490px}.private-story .editorial-image{height:420px}.hospitality-story .editorial-image{height:470px}.story-index{right:-6px;top:35px}.editorial h2,.details-section h2{font-size:3.8rem}.editorial p{max-width:none}.details-head,.details-grid{grid-template-columns:1fr}.details-head{gap:0;margin-bottom:20px}.details-head p{margin-bottom:25px}.details-grid summary{font-size:1.7rem}.occasion-ribbon{font-size:.53rem}.footer-nav{gap:18px 25px}.hero-sigil{display:none}.motion-control{bottom:15px}.private-story .editorial-copy{order:2}}
     @media(prefers-reduced-motion:reduce){.motion-control{display:none}.story-index,.text-link span{transition:none}}
+
+    /* Keep celebration typography proportional to its text column. */
+    .editorial-copy{min-width:0}
+    .private-story{grid-template-columns:minmax(0,1fr) minmax(0,1.2fr);gap:clamp(32px,5vw,80px);align-items:center}
+    .private-story .editorial-copy{container-type:inline-size}
+    .private-story h2{font-size:clamp(2rem,4.2vw,4.75rem);font-size:clamp(1.5rem,12cqi,4.75rem);line-height:1.08;letter-spacing:-.035em;margin:22px 0 26px}
+    .private-story h2 .heading-line{display:block}
+    .private-story p{max-width:38ch;margin:0;font-size:.95rem;line-height:1.85}
+    .private-story .text-link{margin-top:24px}
+    .private-story .editorial-image{min-width:0;height:auto;aspect-ratio:1.12}
+    .private-story .editorial-image img{position:absolute;inset:0;width:100%;height:100%}
+    @media(max-width:900px) and (min-width:651px){.private-story{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:30px}}
+    @media(max-width:650px){.private-story{grid-template-columns:minmax(0,1fr);gap:34px}.private-story .editorial-image{height:auto;aspect-ratio:1.05}.private-story h2{margin-top:18px}.private-story p{max-width:100%}}
   </style>
 </head>
 <body>
@@ -71,7 +84,7 @@
       <div class="editorial-copy reveal"><div class="section-label">Wedding celebrations</div><h2 id="wedding-title">A setting for<br>your <em>forever.</em></h2><p>Wedding stages, elegant tents and considered décor come together to create a beautiful setting for your celebration.</p><p>From furniture and lighting to the complete venue arrangement, every element belongs to the occasion.</p><a class="text-link" href="#work">Explore the visual gallery <span aria-hidden="true">↗</span></a><div class="story-facts"><span>Wedding stages</span><span>Tent setups</span><span>Venue styling</span></div></div>
     </section>
     <section class="editorial private-story" id="celebrations" aria-labelledby="private-title">
-      <div class="editorial-copy reveal"><div class="section-label">Private celebrations</div><h2 id="private-title">Your people.<br>Your <em>occasion.</em></h2><p>Thoughtful settings for private celebrations, with décor, furniture, lighting and venue arrangements brought together around your gathering.</p><a class="text-link" href="#details">Discover the details <span aria-hidden="true">↗</span></a></div>
+      <div class="editorial-copy reveal"><div class="section-label">Private celebrations</div><h2 id="private-title"><span class="heading-line">Your people.</span><span class="heading-line">Your <em>occasion.</em></span></h2><p>Thoughtful settings for private celebrations, with décor, furniture, lighting and venue arrangements brought together around your gathering.</p><a class="text-link" href="#details">Discover the details <span aria-hidden="true">↗</span></a></div>
       <figure class="editorial-image reveal"><img src="assets/stage-detail.webp" alt="Concept of a sculptural ivory celebration setting with warm lighting" loading="lazy" width="900" height="650"><figcaption class="image-caption">Celebration styling · Concept image</figcaption></figure>
     </section>
 
