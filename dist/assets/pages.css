@@ -186,3 +186,27 @@ body .page-main .service-item h3{font-size:30px;line-height:1.16;margin:0 0 16px
 @media(max-width:1000px){.services-catalogue-intro{gap:35px}.services-catalogue-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.service-item{padding:26px}}
 @media(max-width:650px){.services-catalogue-intro{grid-template-columns:1fr;gap:24px}.services-catalogue-grid{grid-template-columns:minmax(0,1fr);grid-auto-rows:auto}.service-item{padding:26px}.service-item-number{margin-bottom:20px}.service-enquiry .text-link{margin-top:12px}}
 @media(prefers-reduced-motion:reduce){.service-item{transition:none}}
+
+/* Image-led experience collections. */
+.experience-section-intro{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.8fr);gap:60px;align-items:end;margin-bottom:38px}
+.experience-section-intro h2{margin-bottom:0}
+.experience-section-intro>p{margin:0;color:#6b645c;font-size:14px;line-height:1.9}
+.experience-event-grid,.experience-setup-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:30px}
+.experience-setup-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
+.experience-card{min-width:0;background:#fffdf9;border:1px solid #ded7cc;display:flex;flex-direction:column}
+body .page-main .experience-card figure{position:relative;margin:0;aspect-ratio:4/3;background:#e7dfd3;overflow:hidden}
+body .page-main .experience-card figure img{width:100%;height:100%;object-fit:cover}
+body .page-main .experience-card figcaption{position:absolute;bottom:14px;left:14px;background:#15120fbd;color:#f4efe7;padding:6px 9px;font:400 8px/1.5 var(--sans);letter-spacing:.1em;text-transform:uppercase}
+.experience-card-copy{padding:28px 30px 32px;flex:1}
+.experience-index{display:block;font:400 9px/1.5 var(--sans);letter-spacing:.16em;text-transform:uppercase;color:#96714b;margin-bottom:15px}
+body .page-main .experience-card h3{font-size:34px;line-height:1.12;margin:0 0 14px}
+.experience-card p{font-size:14px;line-height:1.85;color:#6b645c;margin:0}
+.experience-settings{background:#f0ebe3;border-top:1px solid #ded7cc}
+.experience-setup-grid .experience-card-copy{padding:25px}
+body .page-main .experience-setup-grid h3{font-size:29px}
+.experience-closing{display:flex;align-items:center;justify-content:space-between;gap:30px;margin-top:42px;border-top:1px solid #d6c9b8;padding-top:32px}
+.experience-closing p{font:400 clamp(32px,4vw,48px)/1.12 var(--serif);margin:0}
+.experience-closing em{color:#96714b}
+.experience-closing .text-link{flex-shrink:0}
+@media(max-width:1000px){.experience-section-intro{gap:35px}.experience-setup-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.experience-event-grid{gap:24px}.experience-card-copy{padding:24px}}
+@media(max-width:650px){.experience-section-intro{grid-template-columns:minmax(0,1fr);gap:22px;margin-bottom:30px}.experience-event-grid,.experience-setup-grid{grid-template-columns:minmax(0,1fr);gap:24px}.experience-card-copy,.experience-setup-grid .experience-card-copy{padding:24px}body .page-main .experience-card h3{font-size:30px}.experience-closing{align-items:flex-start;flex-direction:column;gap:22px}}
