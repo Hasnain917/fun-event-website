@@ -15,3 +15,48 @@ if(lightbox){
   lbBg?.addEventListener('click',closeLb);
   document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!lightbox.hidden)closeLb()});
 }
+
+const enquiryForm=document.querySelector('#event-enquiry');
+if(enquiryForm){
+  const summary=document.querySelector('#enquiry-summary'),result=document.querySelector('#enquiry-result'),status=document.querySelector('#copy-status');
+  enquiryForm.addEventListener('submit',e=>{
+    e.preventDefault();
+    if(!enquiryForm.reportValidity())return;
+    const d=new FormData(enquiryForm);
+    summary.textContent=[
+      'Fun Event — Event Enquiry',
+      'Name: '+d.get('name'),
+      'Email: '+d.get('email'),
+      'Phone: '+(d.get('phone')||'Not provided'),
+      'Occasion: '+d.get('occasion'),
+      'Preferred date: '+(d.get('date')||'To be confirmed'),
+      'Venue: '+(d.get('venue')||'To be confirmed'),
+      '',
+      'Event details:',
+      d.get('message')
+    ].join('\n');
+    const waBtn=document.querySelector('#enquiry-whatsapp');
+    if(waBtn) waBtn.href='https://wa.me/971567612222?text='+encodeURIComponent(summary.textContent);
+    const mailBtn=document.querySelector('#enquiry-email');
+    if(mailBtn) mailBtn.href='mailto:info@funevents.ae?subject='+encodeURIComponent('Event enquiry — '+d.get('occasion'))+'&body='+encodeURIComponent(summary.textContent);
+    result.hidden=false;
+    status.textContent='Summary prepared. Choose WhatsApp or Email below to continue.';
+    result.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'center'});
+  });
+  const copyBtn=document.querySelector('#copy-enquiry');
+  if(copyBtn){
+    copyBtn.addEventListener('click',async()=>{
+      try{
+        await navigator.clipboard.writeText(summary.textContent);
+        status.textContent='Enquiry copied to clipboard.';
+      }catch{
+        const range=document.createRange();
+        range.selectNodeContents(summary);
+        const selection=getSelection();
+        selection.removeAllRanges();
+        selection.addRange(range);
+        status.textContent='Select Copy from your browser to copy the highlighted enquiry.';
+      }
+    });
+  }
+}
