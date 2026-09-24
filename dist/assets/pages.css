@@ -323,3 +323,25 @@ body>.page-footer .page-footer-bottom,body>.page-footer .page-footer-bottom a{co
  .inner-hero-layout{gap:30px}
 }
 @media(prefers-reduced-motion:reduce){body .page-main .inner-hero-media img{transition:none}}
+
+
+/* Functional hero actions */
+.inner-hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+.inner-hero-cta{display:inline-flex;align-items:center;justify-content:space-between;gap:28px;min-height:46px;padding:13px 20px;border:1px solid rgba(224,188,135,.58);font:500 11px/1.3 var(--sans);letter-spacing:.09em;text-transform:uppercase;transition:background-color .25s ease,color .25s ease,border-color .25s ease,transform .25s ease}
+.inner-hero-cta span{transition:transform .25s ease}
+.inner-hero-cta:hover{transform:translateY(-2px)}
+.inner-hero-cta:hover span{transform:translate(2px,-2px)}
+.inner-hero-cta-primary{background:#c69b68;color:#15120f;border-color:#c69b68}
+.inner-hero-cta-primary:hover{background:#e0bc87;border-color:#e0bc87}
+.inner-hero-cta-secondary{color:#f4efe7;background:transparent}
+.inner-hero-cta-secondary:hover{background:rgba(224,188,135,.1);border-color:#e0bc87}
+.gallery-card[role="button"]{cursor:zoom-in}
+.gallery-card[role="button"]:focus-visible{outline:2px solid var(--gold);outline-offset:5px}
+@media(max-width:560px){
+  .inner-hero-actions{display:grid;grid-template-columns:1fr;margin-top:24px}
+  .inner-hero-cta{width:100%}
+}
+@media(prefers-reduced-motion:reduce){
+  .inner-hero-cta,.inner-hero-cta span{transition:none}
+  .inner-hero-cta:hover{transform:none}
+}
