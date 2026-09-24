@@ -69,6 +69,23 @@ if(enquiryForm){
     e.preventDefault();
     if(!enquiryForm.reportValidity())return;
     const d=new FormData(enquiryForm);
+    try{
+      const submissionKey='fe-form-submissions-v1';
+      const submissions=JSON.parse(localStorage.getItem(submissionKey)||'[]');
+      submissions.push({
+        id:'FE-'+Date.now().toString(36)+'-'+Math.random().toString(36).slice(2,7),
+        createdAt:new Date().toISOString(),
+        status:'new',
+        name:String(d.get('name')||''),
+        email:String(d.get('email')||''),
+        phone:String(d.get('phone')||''),
+        occasion:String(d.get('occasion')||''),
+        date:String(d.get('date')||''),
+        venue:String(d.get('venue')||''),
+        message:String(d.get('message')||'')
+      });
+      localStorage.setItem(submissionKey,JSON.stringify(submissions));
+    }catch(error){console.warn('Local enquiry storage is unavailable.',error)}
     summary.textContent=[
       'Fun Event — Event Enquiry',
       'Name: '+d.get('name'),

@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Fun Event — Local Admin</title>
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/admin/admin.css">
+</head>
+<body>
+<div class="auth-screen" id="auth-screen">
+  <form class="auth-card" id="auth-form">
+    <img src="/assets/fun-events-logo.png" alt="Fun Event" width="140" height="92">
+    <p class="kicker">Local content studio</p>
+    <h1 id="auth-title">Create your admin PIN</h1>
+    <p id="auth-copy">Set a private PIN for this browser. Use at least 4 characters.</p>
+    <label>Admin PIN<input id="admin-pin" type="password" minlength="4" autocomplete="current-password" required></label>
+    <label id="confirm-wrap">Confirm PIN<input id="admin-pin-confirm" type="password" minlength="4" autocomplete="new-password"></label>
+    <button type="submit" class="primary-btn" id="auth-submit">Create local admin</button>
+    <p class="auth-note">Demo-local mode: data stays only in this browser and is not server-secured.</p>
+    <p class="form-status" id="auth-status" role="status"></p>
+  </form>
+</div>
+
+<div class="admin-shell" id="admin-shell" hidden>
+  <aside class="sidebar">
+    <a class="admin-brand" href="/" target="_blank" rel="noopener">
+      <img src="/assets/fun-events-logo.png" alt="Fun Event">
+      <span>Content Studio</span>
+    </a>
+    <nav aria-label="Admin navigation">
+      <button class="nav-item is-active" data-view="dashboard"><span>◫</span>Dashboard</button>
+      <button class="nav-item" data-view="pages"><span>▤</span>Pages</button>
+      <button class="nav-item" data-view="editor"><span>✦</span>Visual Editor</button>
+      <button class="nav-item" data-view="submissions"><span>✉</span>Submissions <b id="submission-badge">0</b></button>
+      <button class="nav-item" data-view="settings"><span>⚙</span>Settings</button>
+    </nav>
+    <div class="sidebar-foot">
+      <a href="/" target="_blank" rel="noopener">View website ↗</a>
+      <button id="logout-button">Lock admin</button>
+    </div>
+  </aside>
+
+  <main class="admin-main">
+    <header class="admin-topbar">
+      <button class="mobile-nav-toggle" id="mobile-nav-toggle" aria-label="Toggle admin menu">☰</button>
+      <div><p>Fun Event</p><h2 id="view-title">Dashboard</h2></div>
+      <div class="top-actions"><span class="local-pill">● Local mode</span><button class="ghost-btn" id="quick-edit">Edit homepage</button></div>
+    </header>
+
+    <section class="admin-view is-active" data-view-panel="dashboard">
+      <div class="welcome-panel">
+        <div><p class="kicker">Website control centre</p><h1>Everything important,<br><em>in one place.</em></h1><p>Edit visible page content, update images and links, and review enquiries saved from this browser.</p></div>
+        <button class="primary-btn" data-open-editor="/">Open visual editor ↗</button>
+      </div>
+      <div class="stat-grid">
+        <article><span>Pages</span><strong id="stat-pages">9</strong><small>Available to edit</small></article>
+        <article><span>Saved edits</span><strong id="stat-edits">0</strong><small>Local content changes</small></article>
+        <article><span>New enquiries</span><strong id="stat-new">0</strong><small>Waiting for review</small></article>
+        <article><span>Storage</span><strong id="stat-storage">0 KB</strong><small>Used in this browser</small></article>
+      </div>
+      <div class="dashboard-grid">
+        <article class="panel"><div class="panel-head"><div><p class="kicker">Quick access</p><h3>Website pages</h3></div><button class="text-btn" data-switch-view="pages">View all</button></div><div class="quick-pages" id="quick-pages"></div></article>
+        <article class="panel"><div class="panel-head"><div><p class="kicker">Inbox</p><h3>Recent enquiries</h3></div><button class="text-btn" data-switch-view="submissions">Open inbox</button></div><div id="recent-submissions" class="empty-state">No local enquiries yet.</div></article>
+      </div>
+    </section>
+
+    <section class="admin-view" data-view-panel="pages">
+      <div class="section-heading"><div><p class="kicker">Page manager</p><h1>Select a page to edit</h1></div><p>Open any page in the visual editor and click the exact content you want to change.</p></div>
+      <div class="page-grid" id="page-grid"></div>
+    </section>
+
+    <section class="admin-view editor-view" data-view-panel="editor">
+      <div class="editor-toolbar">
+        <div class="toolbar-group"><label for="editor-page">Page</label><select id="editor-page"></select></div>
+        <div class="viewport-switch" aria-label="Preview size"><button class="is-active" data-width="100%">Desktop</button><button data-width="768px">Tablet</button><button data-width="390px">Mobile</button></div>
+        <button class="ghost-btn" id="refresh-preview">Refresh</button>
+        <button class="primary-btn" id="open-live-page">Open page ↗</button>
+      </div>
+      <div class="editor-workspace">
+        <div class="preview-stage"><div class="preview-frame-wrap" id="preview-frame-wrap"><iframe id="site-preview" title="Website preview"></iframe></div></div>
+        <aside class="inspector">
+          <div class="inspector-empty" id="inspector-empty"><span>✦</span><h3>Select an element</h3><p>Click text, an image or a link inside the preview to edit it.</p></div>
+          <form id="inspector-form" hidden>
+            <div class="selected-meta"><span id="selected-tag">ELEMENT</span><small id="selected-selector"></small></div>
+            <label class="field text-field">Content<textarea id="field-content" rows="6" placeholder="Selected content"></textarea><small>Simple HTML is supported for styled words.</small></label>
+            <div class="image-fields" hidden>
+              <label class="field">Image URL<input id="field-src" type="text" placeholder="/assets/image.jpg"></label>
+              <label class="field">Alternative text<input id="field-alt" type="text"></label>
+              <label class="upload-button">Use image from this device<input id="field-upload" type="file" accept="image/jpeg,image/png,image/webp,image/gif"></label>
+              <small class="field-help">Local demo images should be under 1.5 MB.</small>
+            </div>
+            <div class="link-fields" hidden>
+              <label class="field">Link destination<input id="field-href" type="text" placeholder="/contact/"></label>
+              <label class="check-field"><input id="field-new-tab" type="checkbox"> Open in new tab</label>
+            </div>
+            <div class="style-fields">
+              <h4>Appearance</h4>
+              <div class="field-row"><label class="field">Text colour<input id="field-color" type="color" value="#111111"></label><label class="field">Background<input id="field-bg" type="color" value="#ffffff"></label></div>
+              <div class="field-row"><label class="field">Font size<input id="field-size" type="number" min="8" max="180" placeholder="px"></label><label class="field">Alignment<select id="field-align"><option value="">Default</option><option value="left">Left</option><option value="center">Center</option><option value="right">Right</option></select></label></div>
+              <div class="field-row"><label class="field">Top spacing<input id="field-pt" type="number" min="0" max="240" placeholder="px"></label><label class="field">Bottom spacing<input id="field-pb" type="number" min="0" max="240" placeholder="px"></label></div>
+              <label class="check-field"><input id="field-hidden" type="checkbox"> Hide this element</label>
+            </div>
+            <div class="inspector-actions"><button type="submit" class="primary-btn">Save change</button><button type="button" class="danger-text" id="remove-override">Restore original</button></div>
+          </form>
+        </aside>
+      </div>
+    </section>
+
+    <section class="admin-view" data-view-panel="submissions">
+      <div class="section-heading"><div><p class="kicker">Enquiry inbox</p><h1>Form submissions</h1></div><p>Enquiries prepared on this browser appear here. Open a record to see every field.</p></div>
+      <div class="submission-tools"><button class="ghost-btn" id="mark-all-read">Mark all read</button><button class="ghost-btn" id="export-submissions">Export CSV</button></div>
+      <div class="submission-list" id="submission-list"></div>
+    </section>
+
+    <section class="admin-view" data-view-panel="settings">
+      <div class="section-heading"><div><p class="kicker">Local settings</p><h1>Backup & access</h1></div><p>Export a backup before clearing browser data or moving to another computer.</p></div>
+      <div class="settings-grid">
+        <article class="panel"><h3>Content backup</h3><p>Download all edits and submissions as one JSON file.</p><button class="primary-btn" id="export-backup">Export backup</button></article>
+        <article class="panel"><h3>Import backup</h3><p>Restore edits and submissions from a previous JSON backup.</p><label class="upload-button">Choose backup file<input id="import-backup" type="file" accept="application/json"></label></article>
+        <article class="panel"><h3>Change local PIN</h3><p>Replace the PIN used to unlock this browser.</p><form id="change-pin-form"><label class="field">New PIN<input id="new-pin" type="password" minlength="4" required></label><button class="ghost-btn" type="submit">Update PIN</button></form></article>
+        <article class="panel danger-panel"><h3>Reset local admin data</h3><p>Remove all saved edits, submissions and the local PIN from this browser.</p><button class="danger-btn" id="reset-data">Reset everything</button></article>
+      </div>
+    </section>
+  </main>
+</div>
+
+<dialog id="submission-dialog"><button class="dialog-close" aria-label="Close">×</button><div id="submission-detail"></div></dialog>
+<div class="toast" id="toast" role="status"></div>
+<script src="/admin/admin.js"></script>
+</body>
+</html>
