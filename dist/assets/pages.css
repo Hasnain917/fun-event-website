@@ -265,3 +265,61 @@ body{background:#faf8f4;color:#29251f}
   opacity: 1;
   transform: scale(1.15);
 }
+
+/* Restored shared inner-page structure after media refresh. */
+:root{--section-space:60px}
+body .page-main>section{padding-top:var(--section-space)!important;padding-bottom:var(--section-space)!important}
+body .page-main>section>.container{padding-top:0!important;padding-bottom:0!important}
+
+body>.topbar{background:#100e0c!important;border-bottom:1px solid #c69b6855!important;box-shadow:0 8px 28px #0003!important}
+body>.topbar .brand img{filter:none!important}
+body>.topbar .menu a{color:#f4efe7!important}
+body>.topbar .menu a:hover,body>.topbar .menu a[aria-current="page"]{color:#e0bc87!important;border-bottom-color:#e0bc87!important}
+body>.topbar .site-menu-toggle{color:#f4efe7!important;background:#211b15!important;border-color:#c69b68!important}
+
+body .page-main>.inner-page-hero:first-child{width:100%;max-width:none;margin:0;padding:60px max(48px,calc((100% - 1280px)/2))!important;background:#15120f!important;color:#f4efe7;position:relative;isolation:isolate}
+body .page-main>.inner-page-hero:first-child:before{content:'';position:absolute;inset:0 0 auto;height:1px;background:linear-gradient(90deg,transparent,#c69b68,transparent)}
+.inner-hero-layout{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-items:center;gap:64px;width:100%;max-width:1280px;margin-inline:auto}
+.inner-hero-copy{min-width:0;container-type:inline-size}
+.inner-hero-breadcrumb{display:flex;align-items:center;gap:12px;margin:0 0 28px;font-size:10px;letter-spacing:.12em;color:#bdb0a0}
+.inner-hero-breadcrumb a{color:#f4efe7}.inner-hero-breadcrumb a:hover{color:#e0bc87}
+body .inner-page-hero .eyebrow{margin:0 0 20px;font-size:10px;letter-spacing:.16em;color:#e0bc87}
+body .page-main .inner-page-hero h1{font:400 clamp(44px,11.5cqi,72px)/1.06 var(--serif);letter-spacing:-.035em;margin:0 0 25px;color:#f4efe7}
+.inner-page-hero h1>span,.inner-page-hero h1>em{display:block}
+body .page-main .inner-page-hero h1 em{color:#e0bc87}
+body .page-main .inner-page-hero .inner-hero-description{font:400 15px/1.85 var(--sans);max-width:48ch;min-height:5.55em;margin:0;color:#c2b7a9}
+body .page-main .inner-hero-media{position:relative;margin:0;width:100%;height:420px;border:1px solid #c69b6840;overflow:hidden;background:#211b15}
+body .page-main .inner-hero-media img{display:block;width:100%;height:100%;max-width:none;object-fit:cover;transition:transform 1.2s cubic-bezier(.22,1,.36,1)}
+body .page-main .inner-hero-media figcaption{position:absolute;bottom:18px;left:18px;margin:0;padding:7px 10px;background:#15120fcc;color:#e8d7bf!important;font:400 9px/1.4 var(--sans);letter-spacing:.12em;text-transform:uppercase}
+
+body>.page-footer{background:#070605!important;color:#f4efe7!important;border-top:1px solid #c69b683b!important;--gold:#e0bc87;--line:#c69b683b}
+body>.page-footer .page-footer-top{border-bottom-color:#c69b683b}
+body>.page-footer .page-footer-top img{filter:none}
+body>.page-footer .page-footer-top p{color:#f4efe7!important}
+body>.page-footer .page-footer-top em{color:#e0bc87!important}
+body>.page-footer nav,body>.page-footer nav a{color:#d7cfc4!important}
+body>.page-footer nav a:hover{color:#e0bc87!important}
+body>.page-footer .page-footer-bottom,body>.page-footer .page-footer-bottom a{color:#b9ab9b!important}
+
+@media(max-width:1100px){
+ body>.topbar .menu{background:#100e0c!important;border-bottom-color:#c69b6855!important}
+ body>.topbar .menu a{border-bottom-color:#ffffff18!important}
+ body .page-main>.inner-page-hero:first-child{padding-inline:32px!important}
+ .inner-hero-layout{gap:36px}
+ body .page-main .inner-hero-media{height:390px}
+}
+@media(max-width:800px){
+ .inner-hero-layout{grid-template-columns:minmax(0,1fr);gap:32px}
+ .inner-hero-breadcrumb{margin-bottom:25px}
+ body .page-main .inner-page-hero h1{font-size:52px}
+ body .page-main .inner-page-hero .inner-hero-description{max-width:60ch;min-height:0}
+ body .page-main .inner-hero-media{height:340px}
+}
+@media(max-width:520px){
+ body .page-main>.inner-page-hero:first-child{padding-inline:20px!important}
+ body .page-main .inner-page-hero h1{font-size:clamp(38px,11vw,48px)}
+ body .page-main .inner-page-hero .inner-hero-description{font-size:14px}
+ body .page-main .inner-hero-media{height:280px}
+ .inner-hero-layout{gap:30px}
+}
+@media(prefers-reduced-motion:reduce){body .page-main .inner-hero-media img{transition:none}}
